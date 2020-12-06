@@ -1,0 +1,142 @@
+--Yolanda Lewis Homework 1 Supplier Schema
+
+--Create supplier schema
+
+--drop table Suppliers;
+--drop table Parts;
+--drop table Projects;
+drop table Shipments;
+
+
+Create Table Suppliers (
+SupplierNo varchar2(10) PRIMARY KEY,
+Name varChar2(20),
+Status Number(10),
+City  varchar2(100)
+);
+
+CREATE TABLE Parts (
+PartNo varchar2(10) PRIMARY KEY,
+Name varChar2(20),
+Color varchar2 (10),
+Weight NUMBER(10, 2),
+City varchar2 (20)
+);
+
+CREATE TABLE Projects (
+ProjectNo varchar(10) PRIMARY KEY,
+Name varChar2(20),
+City varChar2(10)
+);
+
+CREATE TABLE Shipments (
+SupplierNo varchar2(10),
+PartNo varchar2(10),
+ProjectNo varchar2(10),
+Quantity Number(9),
+
+Foreign Key (SupplierNo) references Suppliers (SupplierNo),
+Foreign Key (PartNo) references Parts (PartNo),
+Foreign Key (ProjectNo) references Projects (ProjectNo)
+);
+
+
+--Insert values into tables
+
+insert into Suppliers
+    values('S1','SMITH',20,'LONDON');
+insert into Suppliers
+    values('S2','JONES',10,'PARIS');
+insert into Suppliers
+    values('S3','BLAKE',30,'PARIS');
+insert into Suppliers
+    values('S4','CLARK',20,'LONDON');
+insert into Suppliers
+    values('S5','ADAMS',30,'ATHENS');
+commit;
+
+insert into Parts
+    values('P1','NUT','RED',12,'LONDON');
+insert into Parts
+    values('P2','BOLT','GREEN',17,'PARIS');  
+insert into Parts
+    values('P3','SCREW','BLUE',17,'ROME');
+insert into Parts
+    values('P4','SCREW','RED',14,'LONDON');
+insert into Parts
+    values('P5','CAMERA','BLUE',32,'PARIS');
+insert into Parts
+    values('P6','WRENCH','RED',19,'LONDON');
+insert into Parts
+    values('P7','C-O-G','GREEN',12,'ROME');
+commit;
+    
+insert into Projects
+    values('J1','SORTER','PARIS');
+insert into Projects
+    values('J2','PUNCH','ROME');
+insert into Projects
+    values('J3','READER','ATHENS');
+insert into Projects
+    values('J4','CONSOLE','ATHENS');
+insert into Projects
+    values('J5','COLLATOR','LONDON');
+insert into Projects
+    values('J6','TERMINAL','OSLO');
+insert into Projects
+    values('J7','TAPE','LONDON');
+insert into Projects
+    values('J8','DRUM','LONDON');
+commit;
+
+insert into Shipments
+    values('S1','P1','J1',200);
+insert into Shipments
+    values('S1','P1','J4',700);
+insert into Shipments
+    values('S1','P3','J1',450);
+insert into Shipments
+    values('S1','P3','J2',210);
+insert into Shipments
+    values('S1','P3','J3',700);
+insert into Shipments
+    values('S2','P3','J4',509);
+insert into Shipments
+    values('S2','P3','J5',600);
+insert into Shipments
+    values('S2','P3','J6',400);
+insert into Shipments
+    values('S2','P3','J7',812);
+insert into Shipments
+    values('S3','P5','J6',750);
+insert into Shipments
+    values('S3','P3','J2',215);
+insert into Shipments
+    values('S3','P4','J1',512);
+insert into Shipments
+    values('S3','P6','J2',313);
+insert into Shipments
+    values('S4','P6','J3',314);
+insert into Shipments
+    values('S4','P2','J6',250);
+insert into Shipments
+    values('S4','P5','J5',179);
+insert into Shipments
+    values('S4','P5','J2',513);
+insert into Shipments
+    values('S5','P7','J4',145);
+insert into Shipments
+    values('S5','P1','J5',269);
+insert into Shipments
+    values('S5','P3','J7',874);
+insert into Shipments
+    values('S5','P4','J4',476);
+insert into Shipments
+    values('S5','P5','J4',529);
+insert into Shipments
+    values('S5','P6','J4',318);
+insert into Shipments
+    values('S5','P2','J4',619);
+Commit;
+    
+--commit for data to be persistent.
